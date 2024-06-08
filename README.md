@@ -33,3 +33,6 @@ Which method is considered to satisfy all necessary conditions during form handl
 1. React-hook-form + Zod + fetch request to API route handler
 2. React-hook-form + Zod + server action
 3. HTML form elements + server action + zod 
+
+## APPROACH 01
+1. Client side form handling -> React-hook_form + zod (using resolver) + API call + no validations in DAL
