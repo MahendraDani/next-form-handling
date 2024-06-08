@@ -28,3 +28,8 @@ Which method is considered to satisfy all necessary conditions during form handl
 2. Validate input and password with zod -> Show errors in red text below input fields
 3. Check if an user with same email exists in database -> Show toast("User already signed up")
 4. Add user to database and then redirect them to /dashboard after showing toast ("Signup success")
+
+## Client Side : Possible Approaches
+1. React-hook-form + Zod + fetch request to API route handler
+2. React-hook-form + Zod + server action
+3. HTML form elements + server action + zod 
