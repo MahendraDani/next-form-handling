@@ -17,8 +17,7 @@ export class AccountService {
     const { account } = await this.getByEmail({ email });
     if (account) {
       throw new EApiError({
-        message:
-          "Account with provided email already exists, please consider using another email address",
+        message: "Account with provided email already exists!",
         helpText: "conflict",
         status: 409,
       });
