@@ -1,5 +1,6 @@
 "use server";
 
+import { generateJWT } from "@/lib/auth/jwt";
 import { database } from "@/lib/services";
 import { ZCreateAccountSchema } from "@/lib/zod";
 import { cookies } from "next/headers";
@@ -61,7 +62,14 @@ export const loginAction = async (
       };
     }
     // if account exists set cookie login : true
-    cookies().set("__test-login", "yes");
+    const token = generateJWT({
+      payload: account,
+    });
+    // 15 days -> 15 * 24 * 60 * 60 * 1000
+    cookies().set("token", token, {
+      maxAge: 15 * 24 * 60 * 60 * 1000,
+      httpOnly: true,
+    });
     return {
       message: "Login successful",
       isError: false,

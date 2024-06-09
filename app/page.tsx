@@ -1,3 +1,10 @@
+import { getCurrentSession } from "@/lib/auth/session";
+
 export default function Home() {
-  return <main>I stilll need to design it</main>;
+  const session = getCurrentSession();
+  return (
+    <main>
+      <pre>{JSON.stringify(session, null, 2)}</pre>
+    </main>
+  );
 }
