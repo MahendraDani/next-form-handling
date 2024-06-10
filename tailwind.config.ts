@@ -1,5 +1,4 @@
 import type { Config } from "tailwindcss";
-import { opensans } from "./app/layout";
 const config = {
   darkMode: ["class"],
   content: [
@@ -18,9 +17,6 @@ const config = {
       },
     },
     extend: {
-      fontFamily: {
-        opensans: "var(--font-opensans)",
-      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

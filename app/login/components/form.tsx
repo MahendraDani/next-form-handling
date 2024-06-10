@@ -26,7 +26,7 @@ export const LoginForm = () => {
 
   const [state, formAction] = useFormState(loginAction, initState);
   return (
-    <Card className="font-opensans max-w-[25rem]">
+    <Card className="max-w-[25rem]">
       <CardHeader className="-mb-2">
         <CardTitle>Login to your Account</CardTitle>
         <CardDescription>

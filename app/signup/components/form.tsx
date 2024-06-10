@@ -69,7 +69,7 @@ export const CreateAccountForm = () => {
   const { isSubmitting } = form.formState;
 
   return (
-    <Card className="font-opensans max-w-[25rem]">
+    <Card className="max-w-[25rem]">
       <CardHeader className="-mb-2">
         <CardTitle>Create Account</CardTitle>
         <CardDescription>
