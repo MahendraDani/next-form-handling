@@ -73,7 +73,7 @@ export const CreateAccountForm = () => {
       <CardHeader className="-mb-2">
         <CardTitle>Create Account</CardTitle>
         <CardDescription>
-          Let's enjoy form handling using react-hook-forms and API call
+          {"Let's enjoy form handling using react-hook-forms and API call"}
         </CardDescription>
       </CardHeader>
       <CardContent>
