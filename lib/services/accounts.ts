@@ -40,7 +40,7 @@ export class AccountService {
   }
 
   async getByEmail({ email }: IGetAccountByEmailParams) {
-    const data = await prisma.accounts.findUnique({
+    const data = await prisma.accounts.findFirst({
       where: {
         email,
       },
