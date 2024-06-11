@@ -14,12 +14,34 @@ generator client {
 //  directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
 // }
 datasource db {
-  provider  = "postgresql"
-  url       = env("DATABASE_URL") // uses connection pooling
+  provider = "postgresql"
+  url      = env("DATABASE_URL") // uses connection pooling
 }
 
 model Accounts {
-  id       Int    @id @default(autoincrement())
-  email    String @unique
-  password String
+  id        Int        @id @default(autoincrement())
+  email     String     @unique
+  password  String
+  createdAt DateTime   @default(now()) @map("created_at")
+  updatedAt DateTime   @updatedAt @map("updated_at")
+  feedback  Feedback[]
+
+  @@index([id])
+}
+
+model Feedback {
+  id          Int     @id @default(autoincrement())
+  name        String
+  feedback    String
+  githubUrl   String  @map("github_url")
+  twitterUrl  String? @map("twitter_url")
+  linkedinUrl String? @map("linkedin_url")
+
+  userId  Int
+  account Accounts @relation(references: [id], fields: [userId], onDelete: Cascade)
+
+  submittedAt DateTime @default(now()) @map("submitted_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  @@index([id, userId])
 }

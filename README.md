@@ -48,3 +48,11 @@ Which method is considered to satisfy all necessary conditions during form handl
 ## APPROACH 01
 
 1. Client side form handling -> React-hook_form + zod (using resolver) + API call + no validations in DAL
+
+## TOP SECRET
+
+For testing i use -
+Email : john@example.com
+Password : John@123
+
+Since I am hashing password now, and I don't want to remember 100 passwords, let's just follow this.

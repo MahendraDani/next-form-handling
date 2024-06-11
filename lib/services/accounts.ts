@@ -1,5 +1,6 @@
 import prisma from "../prisma";
 import { EApiError } from "../error";
+import { hashPassword } from "../auth/password";
 
 interface ICreateAccountParams {
   email: string;
@@ -23,11 +24,13 @@ export class AccountService {
       });
     }
 
+    const hashedPassword = hashPassword({ rawPassword: password });
+
     try {
       const newAccount = await prisma.accounts.create({
         data: {
           email,
-          password,
+          password: hashedPassword,
         },
       });
       return { account: newAccount };

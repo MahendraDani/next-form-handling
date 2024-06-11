@@ -1,6 +1,7 @@
 "use server";
 
 import { generateJWT } from "@/lib/auth/jwt";
+import { validatePassword } from "@/lib/auth/password";
 import { database } from "@/lib/services";
 import { ZCreateAccountSchema } from "@/lib/zod";
 import { cookies } from "next/headers";
@@ -54,7 +55,12 @@ export const loginAction = async (
       };
     }
 
-    if (account.password !== parsed.data.password) {
+    if (
+      !validatePassword({
+        rawPassword: parsed.data.password,
+        hashedPassword: account.password,
+      })
+    ) {
       return {
         message: "Incorrect password",
         isError: true,
