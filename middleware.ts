@@ -7,7 +7,7 @@ export function middleware(request: NextRequest) {
   if (!token && request.nextUrl.pathname !== "/signup") {
     return NextResponse.redirect(new URL("/signup", request.url));
   }
-  console.log(token);
+  // console.log(token);
   return NextResponse.next();
 }
 

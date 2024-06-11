@@ -13,7 +13,7 @@ import { Label } from "@/components/ui/label";
 import { useEffect, useState } from "react";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
 import { useFormState, useFormStatus } from "react-dom";
-import { IPrevStateLoginAction, loginAction } from "../actions/action";
+import { IPrevStateLoginAction, loginAction } from "../action";
 import { Spinner } from "@/components/spinner";
 import { toast } from "sonner";
 
