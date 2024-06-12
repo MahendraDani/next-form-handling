@@ -29,13 +29,13 @@ import { usePathname, useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { FormProgressBar } from "./form-progress-bar";
+import { PersonalInfoForm } from "./personal-info-form";
 
 export const FeedbackForm = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
   const currentStep = searchParams.get("step");
-  // console.log(formStage);
 
   useEffect(() => {
     if (currentStep && parseInt(currentStep) === 4) {
@@ -57,10 +57,11 @@ export const FeedbackForm = () => {
             <Button>Send Feedback</Button>
           </Link>
         ) : (
-          <>
+          <div>
             <FormProgressBar currentStep={currentStep} />
             {currentStep && parseInt(currentStep) === 1 && (
-              <PersonalDetailsForm />
+              // <PersonalDetailsForm />
+              <PersonalInfoForm currentStep={currentStep} />
             )}
             {currentStep && parseInt(currentStep) === 2 && (
               <Form2 currentStep={currentStep} />
@@ -68,7 +69,7 @@ export const FeedbackForm = () => {
             {currentStep && parseInt(currentStep) === 3 && (
               <Form3 currentStep={currentStep} />
             )}
-          </>
+          </div>
         )}
       </CardContent>
     </Card>
@@ -171,8 +172,8 @@ function Form2({ currentStep }: { currentStep: string }) {
   );
 }
 function Form3({ currentStep }: { currentStep: string }) {
-  const searchParams = useSearchParams();
   const router = useRouter();
+  const searchParams = useSearchParams();
   const pathname = usePathname();
   const createQueryString = useCallback(
     (name: string, value: string) => {
