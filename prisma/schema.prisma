@@ -20,12 +20,12 @@ datasource db {
 // }
 
 model Accounts {
-  id        Int        @id @default(autoincrement())
-  email     String     @unique
+  id        Int       @id @default(autoincrement())
+  email     String    @unique
   password  String
-  createdAt DateTime   @default(now()) @map("created_at")
-  updatedAt DateTime   @updatedAt @map("updated_at")
-  feedback  Feedback[]
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @updatedAt @map("updated_at")
+  feedback  Feedback?
 
   @@index([id])
 }
@@ -33,16 +33,19 @@ model Accounts {
 model Feedback {
   id          Int     @id @default(autoincrement())
   name        String
+  occupation  String
   feedback    String
   githubUrl   String  @map("github_url")
   twitterUrl  String? @map("twitter_url")
   linkedinUrl String? @map("linkedin_url")
 
-  userId  Int
-  account Accounts @relation(references: [id], fields: [userId], onDelete: Cascade)
+  makePublic Boolean  @default(false) @map("make_public")
+  userId     Int      @unique
+  account    Accounts @relation(references: [id], fields: [userId], onDelete: Cascade)
 
   submittedAt DateTime @default(now()) @map("submitted_at")
   updatedAt   DateTime @updatedAt @map("updated_at")
 
-  @@index([id, userId])
+  @@index([id])
+  @@index([userId])
 }

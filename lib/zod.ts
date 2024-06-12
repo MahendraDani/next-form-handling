@@ -36,6 +36,10 @@ export const ZFeedbackFormSchema = z.object({
     .min(1, { message: "Name is required" })
     .max(255, { message: "Name should not exceed 255 characters" })
     .describe("The name of user"),
+  occupation: z
+    .string()
+    .min(1, { message: "Occupation is required" })
+    .max(255, { message: "Occupation should not exceed 255 characters" }),
   feedback: z
     .string()
     .min(1, { message: "Feedback field can not be empty" })
@@ -47,4 +51,6 @@ export const ZFeedbackFormSchema = z.object({
     .describe("The github profile of the user"),
   twitterUrl: z.string().optional().describe("The twitter(X) handle of user"),
   linkedinUrl: z.string().optional().describe("The linkedin profile of user"),
+  makePublic: z.boolean().optional(),
+  userId: z.number(),
 });
