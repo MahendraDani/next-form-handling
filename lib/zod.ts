@@ -29,3 +29,22 @@ export const ZCreateAccountSchema = z.object({
       }
     ),
 });
+
+export const ZFeedbackFormSchema = z.object({
+  name: z
+    .string()
+    .min(1, { message: "Name is required" })
+    .max(255, { message: "Name should not exceed 255 characters" })
+    .describe("The name of user"),
+  feedback: z
+    .string()
+    .min(1, { message: "Feedback field can not be empty" })
+    .max(1000, { message: "Feedback should not exceed 1000 characters" })
+    .describe("The feedback of user"),
+  githubUrl: z
+    .string()
+    .min(1, { message: "Github profile is required" })
+    .describe("The github profile of the user"),
+  twitterUrl: z.string().optional().describe("The twitter(X) handle of user"),
+  linkedinUrl: z.string().optional().describe("The linkedin profile of user"),
+});
