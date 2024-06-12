@@ -29,11 +29,6 @@ import { usePathname, useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
-interface IFormStage {
-  prev: number;
-  current: number;
-  next: number;
-}
 export const FeedbackForm = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -41,6 +36,11 @@ export const FeedbackForm = () => {
   const currentStep = searchParams.get("step");
   // console.log(formStage);
 
+  useEffect(() => {
+    if (currentStep && parseInt(currentStep) === 4) {
+      router.push(`http://localhost:3000/feedback`);
+    }
+  }, [currentStep]);
   return (
     <Card className="max-w-[25rem]">
       <CardHeader className="-mb-2">
@@ -61,9 +61,6 @@ export const FeedbackForm = () => {
         )}
         {currentStep && parseInt(currentStep) === 3 && (
           <Form3 currentStep={currentStep} />
-        )}
-        {currentStep && parseInt(currentStep) === 4 && (
-          <p>Feed back submitted successfully</p>
         )}
       </CardContent>
     </Card>
