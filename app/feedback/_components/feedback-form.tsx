@@ -28,6 +28,7 @@ import { useCallback, useEffect, useState } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { FormProgressBar } from "./form-progress-bar";
 
 export const FeedbackForm = () => {
   const searchParams = useSearchParams();
@@ -41,26 +42,33 @@ export const FeedbackForm = () => {
       router.push(`http://localhost:3000/feedback`);
     }
   }, [currentStep]);
+
   return (
-    <Card className="max-w-[25rem]">
+    <Card className="max-w-[30rem]">
       <CardHeader className="-mb-2">
         <CardTitle>Give Feedback</CardTitle>
         <CardDescription>
-          {"Let us know what you liked about this project"}
+          {/* {"Let us know what you liked about this project"} */}
         </CardDescription>
       </CardHeader>
       <CardContent>
-        {!currentStep && (
+        {!currentStep ? (
           <Link href={`/feedback?step=1`}>
             <Button>Send Feedback</Button>
           </Link>
-        )}
-        {currentStep && parseInt(currentStep) === 1 && <PersonalDetailsForm />}
-        {currentStep && parseInt(currentStep) === 2 && (
-          <Form2 currentStep={currentStep} />
-        )}
-        {currentStep && parseInt(currentStep) === 3 && (
-          <Form3 currentStep={currentStep} />
+        ) : (
+          <>
+            <FormProgressBar currentStep={currentStep} />
+            {currentStep && parseInt(currentStep) === 1 && (
+              <PersonalDetailsForm />
+            )}
+            {currentStep && parseInt(currentStep) === 2 && (
+              <Form2 currentStep={currentStep} />
+            )}
+            {currentStep && parseInt(currentStep) === 3 && (
+              <Form3 currentStep={currentStep} />
+            )}
+          </>
         )}
       </CardContent>
     </Card>
@@ -200,10 +208,7 @@ function Form3({ currentStep }: { currentStep: string }) {
       />
       {parseInt(currentStep) > 0 && (
         <Link
-          href={`/${pathname}?${createQueryString(
-            "step",
-            prevStep.toString()
-          )}`}
+          href={`${pathname}?${createQueryString("step", prevStep.toString())}`}
         >
           <Button type="button" variant={"outline"}>
             Back
