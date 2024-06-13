@@ -1,5 +1,5 @@
 import { getCurrentSession } from "@/lib/auth/session";
-import { CreateAccountForm } from "./components/form";
+import { CreateAccountForm } from "./_components/form";
 import { redirect } from "next/navigation";
 
 export default function CreateAccountPage() {

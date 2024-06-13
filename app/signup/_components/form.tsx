@@ -27,6 +27,7 @@ import { toast } from "sonner";
 import { useState } from "react";
 import { useFormStatus } from "react-dom";
 import { Spinner } from "@/components/spinner";
+import { useRouter } from "next/navigation";
 
 export const CreateAccountForm = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -37,6 +38,7 @@ export const CreateAccountForm = () => {
       password: "",
     },
   });
+  const router = useRouter();
 
   const onSubmit = async ({
     email,
@@ -63,6 +65,7 @@ export const CreateAccountForm = () => {
     }
 
     toast.success("Account created successfully");
+    router.push("/feedback");
     return;
   };
 

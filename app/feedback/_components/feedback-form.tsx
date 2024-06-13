@@ -32,6 +32,7 @@ import { FormProgressBar } from "./form-progress-bar";
 import { PersonalInfoForm } from "./personal-info-form";
 import { SocialInfoForm } from "./social-info-form";
 import { FinalFeedbackForm } from "./final-feedback-form";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export const FeedbackForm = () => {
   const searchParams = useSearchParams();

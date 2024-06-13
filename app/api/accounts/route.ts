@@ -1,3 +1,4 @@
+import { generateJWT } from "@/lib/auth/jwt";
 import {
   EApiError,
   handlePrismaKnownError,
@@ -6,6 +7,7 @@ import {
 } from "@/lib/error";
 import { database } from "@/lib/services";
 import { Prisma } from "@prisma/client";
+import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 
 // POST /api/accounts create a new account
@@ -15,6 +17,13 @@ export const POST = async (req: NextRequest) => {
     const { account } = await database.accounts.create({
       email,
       password,
+    });
+
+    const token = generateJWT({
+      payload: account,
+    });
+    cookies().set("token", token, {
+      maxAge: 15 * 24 * 60 * 60 * 1000,
     });
     return NextResponse.json({ account }, { status: 201 });
   } catch (error) {

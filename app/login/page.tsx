@@ -1,5 +1,5 @@
 import { getCurrentSession } from "@/lib/auth/session";
-import { LoginForm } from "./components/form";
+import { LoginForm } from "./_components/form";
 import { redirect } from "next/navigation";
 
 export default async function LoginPage() {
