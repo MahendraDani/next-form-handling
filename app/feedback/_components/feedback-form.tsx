@@ -31,6 +31,7 @@ import Link from "next/link";
 import { FormProgressBar } from "./form-progress-bar";
 import { PersonalInfoForm } from "./personal-info-form";
 import { SocialInfoForm } from "./social-info-form";
+import { FinalFeedbackForm } from "./final-feedback-form";
 
 export const FeedbackForm = () => {
   const searchParams = useSearchParams();
@@ -48,9 +49,6 @@ export const FeedbackForm = () => {
     <Card className="max-w-[30rem]">
       <CardHeader className="-mb-2">
         <CardTitle>Give Feedback</CardTitle>
-        <CardDescription>
-          {/* {"Let us know what you liked about this project"} */}
-        </CardDescription>
       </CardHeader>
       <CardContent>
         {!currentStep ? (
@@ -68,7 +66,7 @@ export const FeedbackForm = () => {
               <SocialInfoForm currentStep={currentStep} />
             )}
             {currentStep && parseInt(currentStep) === 3 && (
-              <Form3 currentStep={currentStep} />
+              <FinalFeedbackForm currentStep={currentStep} />
             )}
           </div>
         )}
@@ -76,148 +74,3 @@ export const FeedbackForm = () => {
     </Card>
   );
 };
-
-function PersonalDetailsForm() {
-  const [age, setAge] = useState("");
-  const searchParams = useSearchParams();
-  const router = useRouter();
-  const pathname = usePathname();
-  const createQueryString = useCallback(
-    (name: string, value: string) => {
-      const params = new URLSearchParams(searchParams.toString());
-      params.set(name, value);
-
-      return params.toString();
-    },
-    [searchParams]
-  );
-  const hanldeFormSubmit = (e: any) => {
-    e.preventDefault();
-    localStorage.setItem("age", age);
-
-    router.push(
-      `http://localhost:3000/feedback?${createQueryString("step", "2")}`
-    );
-  };
-  return (
-    <form onSubmit={hanldeFormSubmit}>
-      <div>Form 1</div>
-      <Input
-        name="age"
-        placeholder="18"
-        onChange={(e) => setAge(e.target.value)}
-      />
-      <Button type="submit">Submit</Button>
-    </form>
-  );
-}
-
-function Form2({ currentStep }: { currentStep: string }) {
-  const searchParams = useSearchParams();
-  const router = useRouter();
-  const pathname = usePathname();
-  const createQueryString = useCallback(
-    (name: string, value: string) => {
-      const params = new URLSearchParams(searchParams.toString());
-      params.set(name, value);
-
-      return params.toString();
-    },
-    [searchParams]
-  );
-  const [role, setRole] = useState("");
-  const nextStep = parseInt(currentStep) + 1;
-  const prevStep = parseInt(currentStep) - 1;
-  const hanldeFormSubmit = (e: any) => {
-    e.preventDefault();
-    createQueryString("step", nextStep.toString());
-    router.push(
-      `http://localhost:3000/feedback?${createQueryString(
-        "step",
-        nextStep.toString()
-      )}`
-    );
-  };
-  return (
-    <>
-      <form onSubmit={hanldeFormSubmit}>
-        <div>Form 2</div>
-        <Input
-          name="role"
-          placeholder="abc"
-          onChange={(e) => {
-            setRole(e.target.value);
-          }}
-        />
-        {parseInt(currentStep) > 0 && (
-          <Link
-            href={`${pathname}?${createQueryString(
-              "step",
-              prevStep.toString()
-            )}`}
-          >
-            <Button type="button" variant={"outline"}>
-              Back
-            </Button>
-          </Link>
-        )}
-
-        <Button type="submit">Submit 2</Button>
-      </form>
-      <Link
-        href={`${pathname}?${createQueryString("step", nextStep.toString())}`}
-      >
-        <Button variant={"secondary"}>Skip</Button>
-      </Link>
-    </>
-  );
-}
-function Form3({ currentStep }: { currentStep: string }) {
-  const router = useRouter();
-  const searchParams = useSearchParams();
-  const pathname = usePathname();
-  const createQueryString = useCallback(
-    (name: string, value: string) => {
-      const params = new URLSearchParams(searchParams.toString());
-      params.set(name, value);
-
-      return params.toString();
-    },
-    [searchParams]
-  );
-  const [name, setName] = useState("");
-  const nextStep = parseInt(currentStep) + 1;
-  const prevStep = parseInt(currentStep) - 1;
-  const hanldeFormSubmit = (e: any) => {
-    e.preventDefault();
-    localStorage.setItem("name", name);
-    router.push(
-      `http://localhost:3000/feedback?${createQueryString(
-        "step",
-        nextStep.toString()
-      )}`
-    );
-  };
-  return (
-    <form onSubmit={hanldeFormSubmit}>
-      <div>Form 3</div>
-      <Input
-        name="name"
-        placeholder="Jhon"
-        onChange={(e) => {
-          setName(e.target.value);
-        }}
-      />
-      {parseInt(currentStep) > 0 && (
-        <Link
-          href={`${pathname}?${createQueryString("step", prevStep.toString())}`}
-        >
-          <Button type="button" variant={"outline"}>
-            Back
-          </Button>
-        </Link>
-      )}
-      <Button type="submit">Submit 3</Button>
-    </form>
-  );
-}

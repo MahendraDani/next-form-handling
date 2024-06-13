@@ -1,6 +1,7 @@
 import {
   EApiError,
   handlePrismaKnownError,
+  handleZodError,
   hanldeApiError,
   hanldeInternalError,
 } from "@/lib/error";
@@ -37,10 +38,11 @@ export const POST = async (req: NextRequest) => {
     } else if (error instanceof Prisma.PrismaClientKnownRequestError) {
       return handlePrismaKnownError(error);
     } else if (error instanceof ZodError) {
-      return NextResponse.json(
-        { message: "Zod validation error", error },
-        { status: 400 }
-      );
+      // return NextResponse.json(
+      //   { message: "Zod validation error", error },
+      //   { status: 400 }
+      // );
+      return handleZodError(error);
     }
 
     return hanldeInternalError();

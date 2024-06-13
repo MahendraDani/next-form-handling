@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { TErrorHelpText, TErrorStatus } from "./types";
 import { Prisma } from "@prisma/client";
+import { ZodError } from "zod";
 
 export class EApiError extends Error {
   readonly status;
@@ -66,6 +67,21 @@ export const hanldeInternalError = () => {
     {
       status: 500,
       statusText: "internal_server_error",
+    }
+  );
+};
+
+export const handleZodError = (error: ZodError) => {
+  return NextResponse.json(
+    {
+      error: {
+        message: error.errors[0].message,
+        error,
+      },
+    },
+    {
+      status: 400,
+      statusText: "bad_request",
     }
   );
 };
