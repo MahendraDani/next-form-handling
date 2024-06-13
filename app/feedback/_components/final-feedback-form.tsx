@@ -66,6 +66,7 @@ export const FinalFeedbackForm = ({ currentStep }: { currentStep: string }) => {
   useEffect(() => {
     form.reset(initialValues);
   }, [initialValues, form]);
+  const router = useRouter();
 
   async function onSubmit({
     makePublic,
@@ -76,7 +77,6 @@ export const FinalFeedbackForm = ({ currentStep }: { currentStep: string }) => {
     const githubUrl = localStorage.getItem("githubUrl") as string;
     const twitterUrl = localStorage.getItem("twitterUrl") as string;
     const linkedinUrl = localStorage.getItem("linkedinUrl") as string;
-    const router = useRouter();
 
     const { user } = getClientSession();
 
