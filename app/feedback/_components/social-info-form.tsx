@@ -16,6 +16,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { isValidLinkedinUrl, isValidTwitterUrl } from "@/lib/valid-urls";
+import { FormButton } from "@/components/ui/buttons/form-button";
 
 const formSchema = z.object({
   twitterUrl: z.string().optional().describe("The twitter(X) handle of user"),
@@ -92,44 +93,52 @@ export const SocialInfoForm = ({ currentStep }: { currentStep: string }) => {
     router.push(`/feedback?${createQueryString("step", nextStep.toString())}`);
   };
 
+  const { isSubmitting } = form.formState;
+
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="p-4 space-y-4">
-        <FormField
-          control={form.control}
-          name="twitterUrl"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Twitter</FormLabel>
-              <FormControl>
-                <Input placeholder="https://x.com/johndoe" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="linkedinUrl"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Linkedin</FormLabel>
-              <FormControl>
-                <Input
-                  placeholder="https://linkedin.com/in/johndoe"
-                  {...field}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <div className="w-full flex justify-end items-center gap-4">
-          <Button type="button" variant={"outline"} onClick={handleSkipSubmit}>
-            Skip
-          </Button>
-          <Button type="submit">Next</Button>
-        </div>
+      <form onSubmit={form.handleSubmit(onSubmit)}>
+        <fieldset className="p-4 space-y-4" disabled={isSubmitting}>
+          <FormField
+            control={form.control}
+            name="twitterUrl"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Twitter</FormLabel>
+                <FormControl>
+                  <Input placeholder="https://x.com/johndoe" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="linkedinUrl"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Linkedin</FormLabel>
+                <FormControl>
+                  <Input
+                    placeholder="https://linkedin.com/in/johndoe"
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <div className="w-full flex justify-end items-center gap-4">
+            <Button
+              type="button"
+              variant={"outline"}
+              onClick={handleSkipSubmit}
+            >
+              Skip
+            </Button>
+            <FormButton isSubmitting={isSubmitting}>Next</FormButton>
+          </div>
+        </fieldset>
       </form>
     </Form>
   );

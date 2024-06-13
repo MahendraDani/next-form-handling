@@ -16,6 +16,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { isValidGithubUrl } from "@/lib/valid-urls";
+import { FormButton } from "@/components/ui/buttons/form-button";
 
 const formSchema = z.object({
   name: z
@@ -90,54 +91,57 @@ export const PersonalInfoForm = ({ currentStep }: { currentStep: string }) => {
     router.push(`/feedback?${createQueryString("step", nextStep.toString())}`);
   }
 
+  const { isSubmitting } = form.formState;
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="p-4 space-y-4">
-        <FormField
-          control={form.control}
-          name="name"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Name</FormLabel>
-              <FormControl>
-                <Input placeholder="John Doe" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="occupation"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Occupation</FormLabel>
-              <FormControl>
-                <Input
-                  placeholder="Student, Co Founder, Developer"
-                  {...field}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="githubUrl"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Github</FormLabel>
-              <FormControl>
-                <Input placeholder="https://github.com/johndoe" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <div className="w-full text-end">
-          <Button type="submit">Next</Button>
-        </div>
+      <form onSubmit={form.handleSubmit(onSubmit)}>
+        <fieldset className="p-4 space-y-4" disabled={isSubmitting}>
+          <FormField
+            control={form.control}
+            name="name"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Name</FormLabel>
+                <FormControl>
+                  <Input placeholder="John Doe" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="occupation"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Occupation</FormLabel>
+                <FormControl>
+                  <Input
+                    placeholder="Student, Co Founder, Developer"
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="githubUrl"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Github</FormLabel>
+                <FormControl>
+                  <Input placeholder="https://github.com/johndoe" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <div className="w-full text-end">
+            <FormButton isSubmitting={isSubmitting}>Next</FormButton>
+          </div>
+        </fieldset>
       </form>
     </Form>
   );

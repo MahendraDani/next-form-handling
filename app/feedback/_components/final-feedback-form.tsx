@@ -46,20 +46,6 @@ const formSchema = z.object({
 });
 
 export const FinalFeedbackForm = ({ currentStep }: { currentStep: string }) => {
-  const router = useRouter();
-  const searchParams = useSearchParams();
-  const createQueryString = useCallback(
-    (name: string, value: string) => {
-      const params = new URLSearchParams(searchParams.toString());
-      params.set(name, value);
-      return params.toString();
-    },
-    [searchParams]
-  );
-
-  // const nextStep = parseInt(currentStep) + 1;
-  // const prevStep = parseInt(currentStep) - 1;
-
   const [initialValues, setInitialValues] = useState({
     feedback: "",
     makePublic: true,
@@ -85,13 +71,12 @@ export const FinalFeedbackForm = ({ currentStep }: { currentStep: string }) => {
     makePublic,
     feedback,
   }: z.infer<typeof formSchema>) {
-    // localStorage.setItem("makePublic", makePublic ? "true" : "false");
-    // localStorage.setItem("feedback", feedback as string);
     const name = localStorage.getItem("name") as string;
     const occupation = localStorage.getItem("occupation") as string;
     const githubUrl = localStorage.getItem("githubUrl") as string;
     const twitterUrl = localStorage.getItem("twitterUrl") as string;
     const linkedinUrl = localStorage.getItem("linkedinUrl") as string;
+    const router = useRouter();
 
     const { user } = getClientSession();
 
@@ -111,11 +96,6 @@ export const FinalFeedbackForm = ({ currentStep }: { currentStep: string }) => {
 
     const response = await res.json();
 
-    // if (res.status === 400) {
-    //   toast.error(response.error.message);
-    //   return;
-    // }
-
     console.log(res);
     console.log(response);
     if (res.status !== 200) {
@@ -123,6 +103,8 @@ export const FinalFeedbackForm = ({ currentStep }: { currentStep: string }) => {
     } else {
       toast.success("Feedback submitted successfully");
     }
+
+    router.push("/feedback");
   }
 
   const { isSubmitting } = form.formState;

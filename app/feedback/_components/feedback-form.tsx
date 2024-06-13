@@ -47,8 +47,8 @@ export const FeedbackForm = () => {
 
   return (
     <Card className="max-w-[30rem]">
-      <CardHeader className="-mb-2">
-        <CardTitle>Give Feedback</CardTitle>
+      <CardHeader className="mb-2 w-full text-center">
+        <CardTitle>Feedback Form</CardTitle>
       </CardHeader>
       <CardContent>
         {!currentStep ? (
@@ -59,7 +59,6 @@ export const FeedbackForm = () => {
           <div>
             <FormProgressBar currentStep={currentStep} />
             {currentStep && parseInt(currentStep) === 1 && (
-              // <PersonalDetailsForm />
               <PersonalInfoForm currentStep={currentStep} />
             )}
             {currentStep && parseInt(currentStep) === 2 && (
