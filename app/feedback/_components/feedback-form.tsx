@@ -30,6 +30,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { FormProgressBar } from "./form-progress-bar";
 import { PersonalInfoForm } from "./personal-info-form";
+import { SocialInfoForm } from "./social-info-form";
 
 export const FeedbackForm = () => {
   const searchParams = useSearchParams();
@@ -64,7 +65,7 @@ export const FeedbackForm = () => {
               <PersonalInfoForm currentStep={currentStep} />
             )}
             {currentStep && parseInt(currentStep) === 2 && (
-              <Form2 currentStep={currentStep} />
+              <SocialInfoForm currentStep={currentStep} />
             )}
             {currentStep && parseInt(currentStep) === 3 && (
               <Form3 currentStep={currentStep} />
