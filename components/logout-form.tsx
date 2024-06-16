@@ -1,13 +1,13 @@
 "use client";
 
 import { useFormState, useFormStatus } from "react-dom";
-import { logoutAction } from "../action";
+import { logoutAction } from "../app/feedback/action";
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/spinner";
 import { toast } from "sonner";
 import { useEffect } from "react";
 
-export const LogoutForm = () => {
+export const Logout = () => {
   const [state, formAction] = useFormState(logoutAction, {
     message: "",
     errorType: null,
@@ -33,7 +33,11 @@ export const LogoutForm = () => {
 function LogoutButton() {
   const { pending } = useFormStatus();
   return (
-    <Button type="submit" className="flex justify-center items-center gap-2">
+    <Button
+      type="submit"
+      variant={"secondary"}
+      className="flex justify-center items-center gap-2"
+    >
       {pending && <Spinner />}
       <span>Logout</span>
     </Button>

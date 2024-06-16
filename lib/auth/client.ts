@@ -4,7 +4,7 @@ import { getCookie } from "cookies-next";
 export const getClientSession = () => {
   const token = getCookie("token");
   if (!token) {
-    throw new Error("Client token not found");
+    return { user: null };
   }
   const decoded = decodeJWT(token);
   return { user: decoded };

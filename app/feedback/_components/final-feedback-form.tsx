@@ -79,6 +79,10 @@ export const FinalFeedbackForm = ({ currentStep }: { currentStep: string }) => {
     const linkedinUrl = localStorage.getItem("linkedinUrl") as string;
 
     const { user } = getClientSession();
+    if (!user) {
+      router.push("/");
+      return;
+    }
 
     const res = await fetch("/api/feedbacks", {
       method: "POST",
