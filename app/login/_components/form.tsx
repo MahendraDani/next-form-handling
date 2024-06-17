@@ -16,6 +16,7 @@ import { useFormState, useFormStatus } from "react-dom";
 import { IPrevStateLoginAction, loginAction } from "../action";
 import { Spinner } from "@/components/spinner";
 import { toast } from "sonner";
+import Link from "next/link";
 
 export const LoginForm = () => {
   const initState: IPrevStateLoginAction = {
@@ -26,11 +27,11 @@ export const LoginForm = () => {
 
   const [state, formAction] = useFormState(loginAction, initState);
   return (
-    <Card className="max-w-[25rem]">
+    <Card className="w-[25rem]">
       <CardHeader className="-mb-2">
         <CardTitle>Login to your Account</CardTitle>
-        <CardDescription>
-          {"Let's understanding form handling using the next way!"}
+        <CardDescription className="text-muted-foreground/40">
+          {"Learn form-handling the Next way!"}
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -101,12 +102,23 @@ function FormFields({ state }: { state: IPrevStateLoginAction }) {
       </fieldset>
       <div className="mt-4 w-full flex justify-center items-center">
         <Button
+          variant={"secondary"}
           type="submit"
-          className="mt-3 flex justify-center items-center gap-2"
+          className="w-full mt-3 flex justify-center items-center gap-2"
         >
           {pending && <Spinner />}
           <span>Login</span>
         </Button>
+      </div>
+      <div className="w-full text-center flex justify-center items-center mt-3">
+        <span className="text-muted-foreground/55 text-sm text-center">
+          {"Don't have an account?"}
+        </span>
+        <Link href={"/signup"}>
+          <span className="hover:underline duration-150 ease-in-out text-sm text-muted-foreground">
+            signup
+          </span>
+        </Link>
       </div>
     </>
   );

@@ -1,6 +1,7 @@
 import { getCurrentSession } from "@/lib/auth/session";
 import { LoginForm } from "./_components/form";
 import { redirect } from "next/navigation";
+import { Container } from "@/components/containers/Container";
 
 export default async function LoginPage() {
   const session = getCurrentSession();
@@ -8,8 +9,8 @@ export default async function LoginPage() {
     redirect("/feedback");
   }
   return (
-    <main className="w-full h-screen flex justify-center items-center">
+    <Container size={"lg"} variant={"flexCenterRow"} className="h-[45rem]">
       <LoginForm />
-    </main>
+    </Container>
   );
 }

@@ -29,6 +29,7 @@ import { useFormStatus } from "react-dom";
 import { Spinner } from "@/components/spinner";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { ExternalNavLink } from "@/components/navbar/external-navlink";
 
 export const CreateAccountForm = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -71,10 +72,8 @@ export const CreateAccountForm = () => {
   return (
     <Card className="w-[25rem] max-w-[25rem]">
       <CardHeader className="-mb-2">
-        <CardTitle className="w-full font-mono text-slate-300">
-          Create Account
-        </CardTitle>
-        <CardDescription>
+        <CardTitle className="w-full">Create Account</CardTitle>
+        <CardDescription className="text-muted-foreground/40">
           <span>{"Forms, errors, rants and a lot more!"}</span>
         </CardDescription>
       </CardHeader>
@@ -145,9 +144,9 @@ export const CreateAccountForm = () => {
                 <span>Sign up</span>
               </Button>
             </div>
-            <div className="w-full text-center">
-              <span className="text-muted-foreground/55 text-sm w-[18rem] mx-auto text-center">
-                {"Already have an account? "}
+            <div className="w-full text-center flex justify-center items-center">
+              <span className="text-muted-foreground/55 text-sm text-center">
+                {"Already have an account?"}
               </span>
               <Link href={"/login"}>
                 <span className="hover:underline duration-150 ease-in-out text-sm text-muted-foreground">

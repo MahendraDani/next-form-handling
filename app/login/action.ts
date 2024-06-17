@@ -49,7 +49,7 @@ export const loginAction = async (
 
   if (!account) {
     return {
-      message: "Account with provided not found, please signup!",
+      message: "Account not found, please signup!",
       isError: true,
       errorType: "databaseError",
     };
