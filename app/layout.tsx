@@ -28,7 +28,7 @@ export default function RootLayout({
         >
           <div className="text-gray-400">
             <Navbar />
-            <main className="px-6 sm:px-48">{children}</main>
+            <main>{children}</main>
             <Toaster position={"top-right"} richColors={true} />
           </div>
         </ThemeProvider>
