@@ -70,11 +70,11 @@ export const CreateAccountForm = () => {
   const { isSubmitting } = form.formState;
 
   return (
-    <Card className="w-[25rem] max-w-[25rem]">
+    <Card className="w-[24rem]">
       <CardHeader className="-mb-2">
         <CardTitle className="w-full">Create Account</CardTitle>
         <CardDescription className="text-muted-foreground/40">
-          <span>{"Forms, errors, rants and a lot more!"}</span>
+          <span>{"Forms, errors and a lot more!"}</span>
         </CardDescription>
       </CardHeader>
       <CardContent>
