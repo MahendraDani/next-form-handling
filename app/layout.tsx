@@ -20,7 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={cn("w-full min-h-screen")}>
+      <body className={cn("w-full min-h-screen font-mono")}>
         <ThemeProvider
           attribute="class"
           forcedTheme="dark"
@@ -29,7 +29,7 @@ export default function RootLayout({
           <div className="text-gray-400">
             <Navbar />
             <main>{children}</main>
-            <Toaster position={"top-right"} richColors={true} />
+            <Toaster position={"top-center"} richColors={true} />
           </div>
         </ThemeProvider>
       </body>

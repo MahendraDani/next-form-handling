@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 import { VariantProps, cva } from "class-variance-authority";
 import React, { ReactNode } from "react";
 
-const containerVariants = cva("mx-auto p-2 sm:p-4", {
+const containerVariants = cva("mx-auto", {
   variants: {
     variant: {
       default: "block",

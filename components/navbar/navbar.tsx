@@ -34,8 +34,7 @@ export default function Navbar() {
       className={cn(
         "sticky top-0 px-4 sm:px-28 py-3 flex justify-between items-center border-transparent",
         {
-          "bg-gray-white/75 backdrop-blur-sm z-10 border-b-[0.3px] border-gray-800":
-            scrolled,
+          "backdrop-blur-sm z-10 border-b-[0.3px] border-gray-800": scrolled,
         }
       )}
     >

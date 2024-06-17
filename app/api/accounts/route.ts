@@ -33,6 +33,7 @@ export const POST = async (req: NextRequest) => {
       return handlePrismaKnownError(error);
     }
 
+    console.error(error);
     return hanldeInternalError();
   }
 };

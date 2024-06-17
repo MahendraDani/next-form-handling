@@ -28,6 +28,7 @@ import { useState } from "react";
 import { useFormStatus } from "react-dom";
 import { Spinner } from "@/components/spinner";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export const CreateAccountForm = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -44,10 +45,6 @@ export const CreateAccountForm = () => {
     email,
     password,
   }: z.infer<typeof ZCreateAccountSchema>) => {
-    // Timeout for 1.5 seconds to show submitting/loading state UI for demo
-    await new Promise((resolve) => {
-      setTimeout(resolve, 1.5 * 1000);
-    });
     const res = await fetch("/api/accounts", {
       method: "POST",
       body: JSON.stringify({
@@ -72,11 +69,13 @@ export const CreateAccountForm = () => {
   const { isSubmitting } = form.formState;
 
   return (
-    <Card className="max-w-[25rem]">
+    <Card className="w-[25rem] max-w-[25rem]">
       <CardHeader className="-mb-2">
-        <CardTitle>Create Account</CardTitle>
+        <CardTitle className="w-full font-mono text-slate-300">
+          Create Account
+        </CardTitle>
         <CardDescription>
-          {"Let's enjoy form handling using react-hook-forms and API call"}
+          <span>{"Forms, errors, rants and a lot more!"}</span>
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -136,14 +135,25 @@ export const CreateAccountForm = () => {
             />
             <div className="w-full flex justify-center items-center">
               <Button
+                variant={"secondary"}
                 type="submit"
                 disabled={isSubmitting}
-                className="mt-3 flex justify-center items-center gap-2
+                className="w-full mt-3 flex justify-center items-center gap-2
       "
               >
                 {isSubmitting && <Spinner />}
-                <span>Submit</span>
+                <span>Sign up</span>
               </Button>
+            </div>
+            <div className="w-full text-center">
+              <span className="text-muted-foreground/55 text-sm w-[18rem] mx-auto text-center">
+                {"Already have an account? "}
+              </span>
+              <Link href={"/login"}>
+                <span className="hover:underline duration-150 ease-in-out text-sm text-muted-foreground">
+                  login
+                </span>
+              </Link>
             </div>
           </form>
         </Form>
