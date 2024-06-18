@@ -92,6 +92,95 @@ h1 {
   );
   background-size: 100% 1px;
 }
+
+span.keyword,
+span.punctionation {
+  @apply text-slate-500;
+}
+
+span.function-variable {
+  @apply text-slate-600;
+}
+
+span.operator,
+span.attr-equals {
+  @apply text-slate-400;
+}
+
+span.builtin {
+  /* @apply text-yellow-700; */
+  @apply text-emerald-700;
+}
+
+span.arrow {
+  @apply text-gray-500;
+}
+
+span.property-access {
+  @apply text-slate-400;
+}
+
+span {
+  @apply text-slate-400;
+}
+
+.linenumber,
+.react-syntax-highlighter-line-number,
+.comment {
+  @apply text-slate-700;
+}
+
+span.function,
+span.maybe-class-name {
+  @apply text-teal-400;
+}
+
+span.tag {
+  @apply text-zinc-700;
+}
+
+span.attr-name,
+span.attr-value {
+  @apply text-emerald-700;
+}
+
+span.attr-equals {
+  @apply text-gray-400;
+}
+
+span.maybe-class-name {
+  @apply text-emerald-600;
+}
+
+span.string {
+  @apply text-emerald-700;
+}
+
+/*
+To think of colors for
+1. keyword - yellow
+2. module - blue
+3. function-variable - green
+4. operator - red
+5. punctuation - cyan
+6. arrow - pink
+7. property-access - cadetblue
+8. span(with no extra classes) - darkorange
+9. linenumber - aquamarine
+10. comment - 
+11. string
+12. attr-name
+13. tag
+14. attr-value
+*/
+
+/*
+SAME COLORS
+punctionation - keyword
+span -> arguments
+
+*/
+
 /* .noise {
   width: 100%;
   height: 100px;
