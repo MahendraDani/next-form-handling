@@ -29,7 +29,11 @@ export default function RootLayout({
           <div className="text-gray-400">
             <Navbar />
             <main>{children}</main>
-            <Toaster position={"top-center"} richColors={true} />
+            <Toaster
+              position={"top-center"}
+              richColors={true}
+              duration={2000}
+            />
           </div>
         </ThemeProvider>
       </body>

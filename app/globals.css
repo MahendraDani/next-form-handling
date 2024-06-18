@@ -136,7 +136,7 @@ span.maybe-class-name {
 }
 
 span.tag {
-  @apply text-zinc-700;
+  @apply text-zinc-500;
 }
 
 span.attr-name,
