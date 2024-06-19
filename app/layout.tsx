@@ -20,7 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={cn("w-full min-h-screen font-mono")}>
+      <body className={cn("w-full min-h-screen")}>
         <ThemeProvider
           attribute="class"
           forcedTheme="dark"
