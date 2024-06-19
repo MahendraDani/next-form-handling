@@ -54,3 +54,10 @@ export const ZFeedbackFormSchema = z.object({
   makePublic: z.boolean().optional(),
   userId: z.number(),
 });
+
+export const ZWordFormSchema = z.object({
+  word: z
+    .string()
+    .min(1, { message: "Please enter a word" })
+    .regex(/^[^\d]*$/, { message: "Numbers should not be present in word" }),
+});

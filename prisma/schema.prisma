@@ -8,16 +8,16 @@ generator client {
   provider = "prisma-client-js"
 }
 
-datasource db {
-  provider  = "postgresql"
-  url       = env("POSTGRES_PRISMA_URL") // uses connection pooling
-  directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
-}
-
 // datasource db {
-//   provider = "postgresql"
-//   url      = env("DATABASE_URL") // uses connection pooling
+//   provider  = "postgresql"
+//   url       = env("POSTGRES_PRISMA_URL") // uses connection pooling
+//   directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
 // }
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL") // uses connection pooling
+}
 
 model Accounts {
   id        Int       @id @default(autoincrement())
@@ -48,4 +48,32 @@ model Feedback {
 
   @@index([id])
   @@index([userId])
+}
+
+model Dictionary {
+  id        Int      @id @default(autoincrement())
+  word      String
+  createdAt DateTime @default(now()) @map("created_at")
+}
+
+enum JokeType {
+  single
+  twopart
+}
+
+enum JokeCategory {
+  Programming
+  Misc
+  Dark
+  Pun
+  Spooky
+  Christmas
+}
+
+model Jokes {
+  id        Int          @id @default(autoincrement())
+  jokeId    Int          @map("joke_id")
+  category  JokeCategory
+  type      JokeType
+  createdAt DateTime     @default(now()) @map("created_at")
 }
