@@ -65,7 +65,7 @@ export const fetchWordMeaningAction = async (
         message: error.message,
       };
     }
-
+    console.log(error);
     return {
       isError: true,
       errorType: "internalError",
