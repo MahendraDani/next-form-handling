@@ -35,9 +35,12 @@ export const fetchWordMeaningAction = async (
 
   try {
     // fetch api
-    const r = await fetch(`${process.env.DICTIONARY_API}/${parsed.data.word}`, {
-      method: "GET",
-    });
+    const r = await fetch(
+      `https://api.dictionaryapi.dev/api/v2/entries/en/${parsed.data.word}`,
+      {
+        method: "GET",
+      }
+    );
 
     if (!r.ok) {
       return {
