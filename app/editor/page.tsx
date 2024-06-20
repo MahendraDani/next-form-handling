@@ -2,11 +2,13 @@
 import { CodeBlock } from "@/components/codeblock/code-block";
 import { CodeBlockCopyButton } from "@/components/codeblock/copy-button";
 import { CodeBlockFileName } from "@/components/codeblock/filename";
+import { MultiTabCodeBlock } from "@/components/codeblock/multi-tab-codeblock";
 import { Container } from "@/components/containers/Container";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { dictionaryExample } from "@/lib/examples/dictionary";
 import { useState } from "react";
 
-const codeString = `export const getUser = async ({id} : {id : string})=>{
+export const codeString = `export const getUser = async ({id} : {id : string})=>{
   const user = await prisma.users.findUnique({
     where : {
       id
@@ -45,35 +47,36 @@ export { Input };
 `;
 
 export default function EditorPage() {
-  const [copyCodeString, setCopyCodeString] = useState(codeString);
-  return (
-    <Container size={"lg"} className="h-[48rem]" variant={"flexCenterRow"}>
-      <Tabs
-        defaultValue="action.ts"
-        onValueChange={(value) => {
-          value === "action.ts"
-            ? setCopyCodeString(codeString)
-            : setCopyCodeString(jsxCodeString);
-        }}
-      >
-        <div className="flex justify-between items-center">
-          <TabsList className="w-full flex justify-start items-center gap-1 border-[0.5px] text-sm bg-gray-800">
-            <CodeBlockFileName language="typescript" fileName="action.ts" />
-            <CodeBlockFileName language="tsx" fileName="form.tsx" />
-          </TabsList>
-          <CodeBlockCopyButton codeString={copyCodeString} />
-        </div>
-        <TabsContent value="action.ts">
-          <CodeBlock language="typescript" filename="action.ts">
-            {copyCodeString}
-          </CodeBlock>
-        </TabsContent>
-        <TabsContent value="form.tsx">
-          <CodeBlock language="tsx" filename="form.tsx">
-            {copyCodeString}
-          </CodeBlock>
-        </TabsContent>
-      </Tabs>
-    </Container>
-  );
+  // const [copyCodeString, setCopyCodeString] = useState(codeString);
+  // return (
+  //   <Container size={"lg"} className="h-[48rem]" variant={"flexCenterRow"}>
+  //     <Tabs
+  //       defaultValue="action.ts"
+  //       onValueChange={(value) => {
+  //         value === "action.ts"
+  //           ? setCopyCodeString(codeString)
+  //           : setCopyCodeString(jsxCodeString);
+  //       }}
+  //     >
+  //       <div className="flex justify-between items-center">
+  //         <TabsList className="w-full flex justify-start items-center gap-1 border-[0.5px] text-sm bg-gray-800">
+  //           <CodeBlockFileName language="typescript" fileName="action.ts" />
+  //           <CodeBlockFileName language="tsx" fileName="form.tsx" />
+  //         </TabsList>
+  //         <CodeBlockCopyButton codeString={copyCodeString} />
+  //       </div>
+  //       <TabsContent value="action.ts">
+  //         <CodeBlock language="typescript" filename="action.ts">
+  //           {copyCodeString}
+  //         </CodeBlock>
+  //       </TabsContent>
+  //       <TabsContent value="form.tsx">
+  //         <CodeBlock language="tsx" filename="form.tsx">
+  //           {copyCodeString}
+  //         </CodeBlock>
+  //       </TabsContent>
+  //     </Tabs>
+  //   </Container>
+  // );
+  return <MultiTabCodeBlock files={dictionaryExample.files} />;
 }

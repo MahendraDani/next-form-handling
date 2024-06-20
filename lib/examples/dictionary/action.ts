@@ -1,24 +1,13 @@
-"use server";
+export const code = `"use server";
 
 import { database } from "@/lib/services";
-import { ZWordFormSchema } from "@/lib/zod";
 import { Prisma } from "@prisma/client";
+import { IPrevState, ZWordFormSchema} from "./types.ts"
 
-type TActionErrorType =
-  | "validationError"
-  | "databaseError"
-  | "internalError"
-  | null;
-export interface IfetchWordMeaningActionPrevState {
-  isError: boolean;
-  message: string;
-  response: any | null;
-  errorType: TActionErrorType;
-}
-export const fetchWordMeaningAction = async (
-  prevState: IfetchWordMeaningActionPrevState,
+export const Action = async (
+  prevState: IPrevState,
   formData: FormData
-): Promise<IfetchWordMeaningActionPrevState> => {
+): Promise<IPrevState> => {
   const parsed = ZWordFormSchema.safeParse({
     word: formData.get("word"),
   });
@@ -35,7 +24,7 @@ export const fetchWordMeaningAction = async (
   try {
     // fetch api
     const res = await fetch(
-      `${process.env.DICTIONARY_API}/${parsed.data.word}`,
+      \`\${process.env.DICTIONARY_API}/\${parsed.data.word}\`,
       {
         method: "GET",
       }
@@ -76,3 +65,4 @@ export const fetchWordMeaningAction = async (
     };
   }
 };
+`;
