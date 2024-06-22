@@ -2,7 +2,7 @@ import { Container } from "@/components/containers/Container";
 
 export default function Home() {
   return (
-    <Container size={"md"}>
+    <Container size={"lg"}>
       <main>
         <p>Hello</p>
         <p>

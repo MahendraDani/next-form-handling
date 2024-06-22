@@ -74,6 +74,6 @@ model Jokes {
   id        Int          @id @default(autoincrement())
   jokeId    Int          @map("joke_id")
   category  JokeCategory
-  type      JokeType
+  jokeType  JokeType
   createdAt DateTime     @default(now()) @map("created_at")
 }
