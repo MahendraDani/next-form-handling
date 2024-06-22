@@ -13,7 +13,7 @@ export const CodeBlockFileName = ({
   return (
     <TabsTrigger
       value={fileName}
-      className="text-yellow-500 flex justify-start items-center gap-1"
+      className="text-yellow-500 flex justify-start items-center gap-1 hover:bg-black/25"
     >
       {language === "typescript" && (
         <Image src={tsIcon} height={16} width={16} alt="ts icon" />

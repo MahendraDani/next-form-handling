@@ -19,7 +19,11 @@ export const MultiTabCodeBlock = ({
   const [copyCodeString, setCopyCodeString] = useState(files[0].code);
   return (
     <Tabs
-      className="max-w-[40rem]"
+      className={`${
+        editorStyles?.maxWidth
+          ? `max-w-[${editorStyles?.maxWidth}]`
+          : "max-w-[38rem]"
+      }`}
       defaultValue={files[0].filename}
       onValueChange={(value) => {
         for (let i = 0; i < files.length; i++) {
@@ -30,9 +34,9 @@ export const MultiTabCodeBlock = ({
       }}
     >
       <div
-        className={`flex justify-between items-center w-[${editorStyles?.maxWidth}]`}
+        className={`w-full max-w-[${editorStyles?.maxWidth}] flex justify-between items-center bg-slate-800 rounded-t-md`}
       >
-        <TabsList className="w-full flex justify-start items-center gap-1 border-[0.5px] text-sm bg-gray-800">
+        <TabsList className="w-full flex justify-start items-center gap-1 border-[0.5px] text-sm">
           {files.map((file, i) => (
             <CodeBlockFileName
               key={i}

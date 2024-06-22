@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 import { MultiTabCodeBlock } from "@/components/codeblock/multi-tab-codeblock";
 import { dictionaryExample } from "@/lib/examples/dictionary";
 export const DictionaryPageClient = () => {
-  const [showCodeBlock, setShowCodeBlock] = useState(false);
+  const [showCodeBlock, setShowCodeBlock] = useState(true);
   return (
     <main className="flex justify-between items-start gap-8">
       {/* For desktop screens */}
@@ -21,10 +21,11 @@ export const DictionaryPageClient = () => {
       </section>
 
       <div className="w-full lg:w-auto">
-        <div className="lg:hidden w-full flex justify-between items-center">
-          <h2>Dictionary for you</h2>
+        <div className="lg:hidden w-full flex justify-between items-center mb-2">
+          <h2 className="text-xl font-semibold">Dictionary for you</h2>
           <Button
             variant={"secondary"}
+            className="py-[1.1rem]"
             onClick={() => {
               showCodeBlock ? setShowCodeBlock(false) : setShowCodeBlock(true);
             }}
@@ -43,7 +44,7 @@ export const DictionaryPageClient = () => {
           />
         </main>
         <main
-          className={cn("block w-full", {
+          className={cn("block w-full ", {
             "hidden lg:block": showCodeBlock,
           })}
         >

@@ -28,12 +28,12 @@ export const DictionaryForm = () => {
     state.isError ? showErrorToast() : null;
   }, [state]);
   return (
-    <div className="space-y-2 min-h-[48rem] md:min-w-[32rem]">
+    <div className="space-y-2">
       <form action={formAction}>
         <FormFields state={state} />
       </form>
       {!state.isError && state.response && (
-        <div>
+        <div className="border-[0.8px] border-gary-800 p-2">
           <div className="w-full flex justify-start items-center gap-3">
             <div className="w-full flex justify-between items-center">
               <h2 className="text-lg sm:text-xl font-semibold">
@@ -108,8 +108,7 @@ export const DictionaryForm = () => {
 function FormFields({ state }: { state: IfetchWordMeaningActionPrevState }) {
   const { pending } = useFormStatus();
   return (
-    <fieldset disabled={pending} className="w-full ">
-      <Label className="text-lg">Search any word</Label>
+    <fieldset disabled={pending} className="w-full">
       <div className="w-full flex justify-start items-start gap-2">
         <div className="w-full flex justify-start items-start flex-col">
           <Input placeholder="healthy" name="word" className="sm:w-[23rem]" />
@@ -118,13 +117,12 @@ function FormFields({ state }: { state: IfetchWordMeaningActionPrevState }) {
           )}
         </div>
         <Button
-          className="py-4 flex justify-center items-center gap-1"
+          className="py-[1.2rem] min-w-20 flex justify-center items-center gap-1"
           type="submit"
           disabled={pending}
           variant={"secondary"}
         >
-          {pending && <Spinner />}
-          <span>Search</span>
+          {pending ? <Spinner /> : "Search"}
         </Button>
       </div>
     </fieldset>

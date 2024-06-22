@@ -30,6 +30,7 @@ export const CodeBlock = ({
           backgroundColor: "black",
           border: "0.5px solid rgb(31,41,55)",
           overflowX: "auto",
+          maxWidth: editorStyles.maxWidth,
           ...editorStyles,
         }}
         {...props}

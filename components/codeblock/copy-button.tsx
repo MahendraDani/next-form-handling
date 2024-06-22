@@ -6,7 +6,7 @@ import { toast } from "sonner";
 export const CodeBlockCopyButton = ({ codeString }: { codeString: string }) => {
   const [showCopyButton, setShowCopytButton] = useState(true);
   return (
-    <div className="bg-slate-800 p-1 px-2 rounded-tr-sm">
+    <div className="p-1 px-2 rounded-tr-sm">
       {showCopyButton ? (
         <button
           onClick={() => {

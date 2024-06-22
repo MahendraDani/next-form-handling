@@ -13,7 +13,7 @@ const containerVariants = cva("mx-auto", {
     },
     size: {
       default: "w-[100vw]",
-      lg: "w-[90vw] sm:w-[80vw]",
+      lg: "w-[97vw] sm:w-[80vw]",
       md: "w-[85vw] sm:w-[40rem]",
     },
   },
