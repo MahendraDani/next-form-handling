@@ -3,8 +3,8 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { MultiTabCodeBlock } from "@/components/codeblock/multi-tab-codeblock";
-import { dictionaryExample } from "@/lib/examples/dictionary";
 import { JokesForm } from "./form";
+import { jokeExample } from "@/lib/examples/jokes";
 export const JokesPageClient = () => {
   const [showCodeBlock, setShowCodeBlock] = useState(true);
   return (
@@ -12,7 +12,7 @@ export const JokesPageClient = () => {
       {/* For desktop screens */}
       <section className="hidden md:block w-[48rem] h-[50vh]">
         <MultiTabCodeBlock
-          files={dictionaryExample.files}
+          files={jokeExample.files}
           editorStyles={{
             maxWidth: "38rem",
             maxHeight: "80vh",
@@ -22,7 +22,7 @@ export const JokesPageClient = () => {
 
       <div className="w-full lg:w-auto">
         <div className="lg:hidden w-full flex justify-between items-center mb-2">
-          <h2 className="text-xl font-semibold">Dictionary for you</h2>
+          <h2 className="text-xl font-semibold">Jokes</h2>
           <Button
             variant={"secondary"}
             className="py-[1.1rem]"
@@ -37,19 +37,16 @@ export const JokesPageClient = () => {
           className={`lg:hidden ${showCodeBlock ? "block" : "hidden"} pt-2`}
         >
           <MultiTabCodeBlock
-            files={dictionaryExample.files}
+            files={jokeExample.files}
             editorStyles={{
               maxHeight: "80vh",
             }}
           />
         </main>
         <main
-          className={cn(
-            "block justify-center items-center min-h-[45rem] w-full ",
-            {
-              "hidden lg:flex ": showCodeBlock,
-            }
-          )}
+          className={cn("flex justify-center items-center min-h-[40rem] ", {
+            "hidden lg:flex ": showCodeBlock,
+          })}
         >
           <JokesForm />
         </main>

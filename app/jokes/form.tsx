@@ -39,7 +39,7 @@ import { useState } from "react";
 
 export const JokesForm = () => {
   return (
-    <Card className="w-[21rem] md:w-[26rem]">
+    <Card className="w-[24rem] md:w-[26rem]">
       <CardHeader className="-mb-2">
         <CardTitle className="w-full">bored? interested in a joke?</CardTitle>
       </CardHeader>
