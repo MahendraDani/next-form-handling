@@ -41,10 +41,8 @@ export default function Navbar() {
       <NavLogo />
 
       <div className="flex justify-center items-center gap-6">
-        <ExternalNavLink
-          name="source"
-          href="https://github.com/MahendraDani/next-form-handling"
-        />
+        <NavLink name="dictionary" href="/dictionary" />
+        <NavLink name="jokes" href="/jokes" />
 
         {/* TODO : update the href to the posted blog's href */}
         <ExternalNavLink name="blog" href="/" />
